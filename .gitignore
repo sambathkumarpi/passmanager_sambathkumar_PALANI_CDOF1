@@ -1,0 +1,67 @@
+# .gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+
+# Virtual Environment
+env/
+
+# IDE settings
+.idea/
+
+# Miscellaneous
+*.DS_Store
+*.log
+*.sqlite3
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+*.pyproj
+*.pycproj
+*.pytproj
+*.pyoproj
+*.pydproj
+*.pyzproj
+*.pywproj
+*.dll
+*.log
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Sublime Text
+.sublime-project
+.sublime-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Sphinx documentation
+docs/_build/
+
+# Ignore env folder
+env/
+
+pass/
