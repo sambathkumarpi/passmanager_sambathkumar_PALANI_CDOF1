@@ -21,15 +21,18 @@ def decrypt_data(key, encrypted_data):
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
-# Save encrypted data to a file
+# Save encrypted data to a JSON file
 def save_data(filename, data):
-    with open(filename, 'wb') as file:
-        file.write(data)
+    with open(filename, 'w') as file:
+        json.dump(data, file, default=lambda x: x.decode() if isinstance(x, bytes) else x)
 
-# Load encrypted data from a file
+# Load encrypted data from a JSON file
 def load_data(filename):
-    with open(filename, 'rb') as file:
-        return file.read()
+    try:
+        with open(filename, 'r') as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
 
 # Main function to add or retrieve passwords
 def main():
@@ -37,17 +40,15 @@ def main():
     print("█░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀   ▀█▀ █▀█   █▀▄▀█ █▄█   █░█ ▄▀█ █░█ █░░ ▀█▀")
     print("▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █░▀░█ ██▄   ░█░ █▄█   █░▀░█ ░█░   ▀▄▀ █▀█ █▄█ █▄▄ ░█░")
     print()  # Empty line for space
-    
+
     key = generate_key()
     master_password = getpass.getpass("Enter your master password: ")
     hashed_master_password = hash_password(master_password)
 
     # Check if a data file exists, if not, create an empty dictionary
     try:
-        encrypted_data = load_data('passwords.dat')
-        decrypted_data = decrypt_data(key, encrypted_data)
-        passwords = json.loads(decrypted_data)
-    except (FileNotFoundError, json.JSONDecodeError):
+        passwords = load_data('passwords.json')
+    except FileNotFoundError:
         passwords = {}
 
     # Menu loop
@@ -63,9 +64,10 @@ def main():
             password = getpass.getpass("Enter the password: ")
 
             # Encrypt and store the password
+            encrypted_password = encrypt_data(key, password)
             passwords[website] = {
                 'username': username,
-                'password': encrypt_data(key, password)
+                'password': encrypted_password
             }
             print("Password added successfully!")
 
@@ -81,8 +83,7 @@ def main():
 
         elif choice == '3':
             # Save the encrypted data and exit
-            encrypted_data = encrypt_data(key, json.dumps(passwords))
-            save_data('passwords.dat', encrypted_data)
+            save_data('passwords.json', passwords)
             print("Password manager closed.")
             break
 
