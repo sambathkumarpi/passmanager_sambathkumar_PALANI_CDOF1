@@ -1,3 +1,5 @@
+pip install flake8
+
 import getpass
 import hashlib
 import json
@@ -37,7 +39,7 @@ def main():
     print("█░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀   ▀█▀ █▀█   █▀▄▀█ █▄█   █░█ ▄▀█ █░█ █░░ ▀█▀")
     print("▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █░▀░█ ██▄   ░█░ █▄█   █░▀░█ ░█░   ▀▄▀ █▀█ █▄█ █▄▄ ░█░")
     print()  # Empty line for space
-    
+
     key = generate_key()
     master_password = getpass.getpass("Enter your master password: ")
     hashed_master_password = hash_password(master_password)
