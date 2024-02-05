@@ -59,8 +59,15 @@ def generate_strong_password():
 
 # Main function to add or retrieve passwords
 def main():
+
+    # Print the welcome message
+    print("█░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀   ▀█▀ █▀█   █▀▄▀█ █▄█   █░█ ▄▀█ █░█ █░░ ▀█▀")
+    print("▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █░▀░█ ██▄   ░█░ █▄█   █░▀░█ ░█░   ▀▄▀ █▀█ █▄█ █▄▄ ░█░")
+    print()  # Empty line for space
+
     print("Welcome to Your Password Manager")
     print("---------------------------------")
+
 
     key = generate_key()
     master_password = getpass.getpass("Enter your master password: ")
