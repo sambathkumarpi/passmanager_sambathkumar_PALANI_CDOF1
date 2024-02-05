@@ -1,5 +1,3 @@
-pip install flake8
-
 import getpass
 import hashlib
 import json
